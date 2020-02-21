@@ -6,13 +6,21 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import org.opencv.android.OpenCVLoader
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
+    companion object {
+        init {
+            System.loadLibrary("opencv_java4")
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        OpenCVLoader.initDebug()
         topContents.setOnClickListener(this)
     }
 
