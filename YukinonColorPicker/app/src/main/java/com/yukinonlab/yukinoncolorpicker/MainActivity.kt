@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import org.opencv.android.OpenCVLoader
 import kotlinx.android.synthetic.main.content_main.*
 
+import com.yukinonlab.yukinoncolorpicker.PermissionPackage.ParmissionManager
+
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
@@ -32,6 +34,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         Log.d("test", "aaaaaa")
+        ParmissionManager.getPermissionCamera(this)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
