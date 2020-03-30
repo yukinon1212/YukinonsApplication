@@ -1,23 +1,17 @@
 package com.yukinonlab.yukinoncolorpicker
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import org.opencv.android.OpenCVLoader
-import kotlinx.android.synthetic.main.content_main.*
-
 import com.yukinonlab.yukinoncolorpicker.PermissionPackage.ParmissionManager
+import kotlinx.android.synthetic.main.content_main.*
+import org.opencv.android.OpenCVLoader
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-
-    companion object {
-        init {
-            System.loadLibrary("opencv_java4")
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +28,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         Log.d("test", "aaaaaa")
-        ParmissionManager.getPermissionCamera(this)
+
+        if(!ParmissionManager.getPermissionCamera(this)){
+            return
+        }
 
         if(!OpenCVLoader.initDebug()){
-            Log.d("OpenCV", "Failed");
+            Log.d("OpenCV", "Failed")
+            return
         }else{
-            Log.d("OpenCV", "successfully built !");
+            Log.d("OpenCV", "successfully built !")
         }
+        startActivity(Intent(this, CameraActivity::class.java))
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
