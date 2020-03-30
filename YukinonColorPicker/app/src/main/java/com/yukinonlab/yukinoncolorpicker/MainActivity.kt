@@ -36,6 +36,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         Log.d("test", "aaaaaa")
         ParmissionManager.getPermissionCamera(this)
 
+        if(!OpenCVLoader.initDebug()){
+            Log.d("OpenCV", "Failed");
+        }else{
+            Log.d("OpenCV", "successfully built !");
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
